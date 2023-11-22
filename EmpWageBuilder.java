@@ -1,4 +1,5 @@
 public class EmpWageBuilder {
+
    // Attendance Checker 
    public static int AttendanceChecker(int initialVal, String EmpType) {
        int empChecker = ((int) (Math.random() * 10)) % 2;
@@ -27,6 +28,7 @@ public class EmpWageBuilder {
         return totalWage;
     }
     
+
     
     // Monthly Wage Computation Using Condition
 
@@ -46,6 +48,7 @@ public class EmpWageBuilder {
         totalWage = currHour * WagePerHour;
         return totalWage;
     }
+
     public static void main(String[] args) {
             // Display welcome Message
             System.out.println("Welcome to Employee Wage Computation Program");
@@ -58,7 +61,7 @@ public class EmpWageBuilder {
             int Max_Day = 20;
             int Max_Hour = 100;
 
-        
+
             // Attendance Checker for Full Time Emp
             int is_Present_Full_Time = AttendanceChecker(IS_FULL_TIME , "Full Time");
 
@@ -83,6 +86,7 @@ public class EmpWageBuilder {
           System.out.println("Monthly Wage for Part Time Emp is : " + Part_Time_Monthly_Wage);
 
 
+
           // Monthly Full Time Emp Wage Computation using condition
           System.out.println("Monthly total wage for Full Time Emp using condition is : "
                   + MonthlyWageComputationCondition(FULL_TIME_HOUR, WAGE_PER_HOUR, Max_Hour, Max_Day));
@@ -90,5 +94,6 @@ public class EmpWageBuilder {
           // Monthly Part time emp wage computation using condition
          System.out.println("Monthly total wage for Part Time Emp using condition is : " +
          MonthlyWageComputationCondition(PART_TIME_HOUR,WAGE_PER_HOUR, Max_Hour, Max_Day));
+
         }
     }
