@@ -1,18 +1,33 @@
 public class EmpWageBuilder {
 
-    public static int AttendanceChecker(int initialVal, String EmpType) {
-        int empChecker = ((int) (Math.random() * 10)) % 2;
-        if (empChecker == initialVal) {
-            System.out.println(EmpType+" Employee is Present");
-        } else {
-            System.out.println(EmpType+ " Employee is not Present");
-        }
-        return empChecker;
-    }
-   
+   // Attendance Checker 
+   public static int AttendanceChecker(int initialVal, String EmpType) {
+       int empChecker = ((int) (Math.random() * 10)) % 2;
+       if (empChecker == initialVal) {
+           System.out.println(EmpType + " Employee is Present");
+       } else {
+           System.out.println(EmpType + " Employee is not Present");
+       }
+       return empChecker;
+   }
+    
+    //Daily Wage Computation 
     public static int DailyWageComputation(int isPresent, int WorkingHour, int WagePerHour) {
         return isPresent * WorkingHour * WagePerHour;
     }
+
+    // Monthly Wage Computation
+    public static int MonthlyWageComputation(int WorkingHour, int WagePerHour) {
+        int workingDayPerMonth = 30;
+        int totalWage = 0;
+
+        for (int i = 0; i < workingDayPerMonth; i++) {
+            int isPresent = (int) (Math.random() * 10) % 2;
+            totalWage += DailyWageComputation(isPresent, WorkingHour, WagePerHour);
+        }
+        return totalWage;
+    }
+    
     public static void main(String[] args) {
             // Display welcome Message
             System.out.println("Welcome to Employee Wage Computation Program");
@@ -22,8 +37,6 @@ public class EmpWageBuilder {
             int FULL_TIME_HOUR = 8;
             int IS_PART_TIME = 1;
             int PART_TIME_HOUR = 4;
-
-        
 
             // Attendance Checker for Full Time Emp
             int is_Present_Full_Time = AttendanceChecker(IS_FULL_TIME , "Full Time");
@@ -40,8 +53,13 @@ public class EmpWageBuilder {
             int Part_Time_Daily_Wage = DailyWageComputation(is_Present_Part_Time, PART_TIME_HOUR, WAGE_PER_HOUR);
             System.out.println("Today's total wage for Part Time Employee is : " + Part_Time_Daily_Wage);
            
+          // Monthly Full Time Emp Wage Computation
+          int Full_Time_Monthly_Wage = MonthlyWageComputation(FULL_TIME_HOUR, WAGE_PER_HOUR);
+          System.out.println("Monthly Wage for Full Time Emp is : " + Full_Time_Monthly_Wage);
           
-         
-
+          // Monthly Part Time Emp Wage Computation
+          int Part_Time_Monthly_Wage = MonthlyWageComputation(PART_TIME_HOUR, WAGE_PER_HOUR);
+          System.out.println("Monthly Wage for Part Time Emp is : " + Part_Time_Monthly_Wage);
+          
         }
     }
