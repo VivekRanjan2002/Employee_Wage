@@ -58,7 +58,7 @@ public class Company {
                 currentDay += 1;
                 currentHour += Math.min(workingHour, totalWorkingHour - currentHour);
             }
-            System.out.println("Day: "+currentDay + " Total working Hour: "+currentHour);
+           // System.out.println("Day: "+currentDay + " Total working Hour: "+currentHour);
 
         }
         this.totalWage = currentHour * this.wage;
@@ -66,8 +66,15 @@ public class Company {
        
         
     }
-     public void WageMapper(HashMap<String,Integer> CompaniesWage){
-              CompaniesWage.put(this.name,this.totalWage); 
+     public void CompanyMapper(HashMap<String,Company> map){
+         map.put(this.name, this);
+           System.out.println( map.get(this.name));   
               
         }
+
+   
+    @Override
+    public String toString(){
+        return "The Total Wage of "+ this.name+ " is : "+ this.totalWage;
+    }
 }
