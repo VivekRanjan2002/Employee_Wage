@@ -1,3 +1,4 @@
+import java.util.HashMap;
 public class Company {
     String name;
     private int wage;
@@ -61,6 +62,12 @@ public class Company {
 
         }
         this.totalWage = currentHour * this.wage;
+       
+       
         
     }
+     public void WageMapper(HashMap<String,Integer> CompaniesWage){
+              CompaniesWage.put(this.name,this.totalWage); 
+              
+        }
 }
