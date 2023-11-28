@@ -7,6 +7,7 @@ public class Company implements CompanyInterface{
     private int  totalWorkingDay;
     private int totalWorkingHour;
     public int totalWage = 0;
+    public int dailyWage = 0;
 
     // getter function
     public int wage() {
@@ -27,9 +28,34 @@ public class Company implements CompanyInterface{
         this.totalWorkingDay=totalWorkingDay;
         this.totalWorkingHour = totalWorkingHour;
         this.totalWageComputation(totalWorkingDay, totalWorkingHour);
+        dailyWage(wage);
     }
 
-   
+    /*
+     * @desc: compute dailywage by using attendance of emp using random fnc and type of emp also using random
+     * fnc and accordingly working hour per day is assigned
+     * @param:wage per hour
+     * @return : daily wage 
+     */
+    @Override
+    public void dailyWage(int wage) {
+       int isPresent = (int) ((Math.random() * 10) % 2);
+       int workingHour = 0;
+         int TypeofEmp = (int) ((Math.random() * 10) % 2);
+         switch (TypeofEmp) {
+             case 0: // Part Time
+                 workingHour = 4;
+                 break;
+             case 1: // full time
+                 workingHour = 8;
+                 break;
+             default:
+                 workingHour = 0;
+
+         }
+            
+         this.dailyWage = isPresent * workingHour * wage;
+    }
 
    
 
@@ -84,7 +110,11 @@ public class Company implements CompanyInterface{
      */
     @Override
     public void Logger() {
-        System.out.println("Name: "+this.name+ "    TotalWage: "+this.totalWage);
+        System.out.println(String.format("""
+               Name: %s
+               DailyWage:%s
+               TotalWage: %d 
+               """,this.name,this.dailyWage, this.totalWage));
 
     }
 
@@ -92,8 +122,9 @@ public class Company implements CompanyInterface{
     public String toString() {
        String temp= String.format("""
                Name: %s
+               DailyWage:%s
                TotalWage: %d 
-               """,this.name, this.totalWage);
+               """,this.name,this.dailyWage, this.totalWage);
        return temp;
        
     }
