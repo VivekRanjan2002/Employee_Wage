@@ -9,12 +9,12 @@ public class EmpWageBuilder {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Company> companyMapper = new ArrayList<>();
+        Company[] companyMapper;
 
         System.out.println("Please enter the total no. of companies ");
         int companyNo = sc.nextInt();
-
-        while (companyNo > 0) {
+        companyMapper = new Company[companyNo];
+        for (int i=0;i<companyNo;i++){
             System.out.println("Please Enter name of company");
             sc.nextLine();
             String name = sc.nextLine();
@@ -26,11 +26,11 @@ public class EmpWageBuilder {
             System.out.println("Enter total working Hour");
             int totalWorkingHour = sc.nextInt();
             Company cmp = new Company(name, wage, totalWorkingDay, totalWorkingHour);
-            companyMapper.add(cmp);
-            companyNo--;
+            companyMapper[i]= cmp;
+        
         }
 
-        Logger(companyMapper);
+        Logger(companyNo,companyMapper);
 
     }
 
@@ -39,9 +39,9 @@ public class EmpWageBuilder {
      * @params: arraylist which store company object
      * 
      */
-    public static void Logger(ArrayList<Company> arr) {
-        for (int i = 0; i < arr.size(); i++) {
-            System.out.println(arr.get(i));
+    public static void Logger(int n,Company[] arr) {
+        for (int i = 0; i < n; i++) {
+            System.out.println(arr[i]);
         }
 
     }
