@@ -1,20 +1,48 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class EmpWageBuilder {
 
    
     public static void main(String[] args) {
-            // Display welcome Message
-            System.out.println("Welcome to Employee Wage Computation Program");
-           HashMap<String,Company> CompanyMapper= new HashMap<>();
+        // Display welcome Message
+        System.out.println("Welcome to Employee Wage Computation Program");
 
-            Company c1 = new Company("Reliance", 20, 20, 100);
-            c1.CompanyMapper(CompanyMapper);
-            Company c2 = new Company("GE", 25, 15, 100);
-            c2.CompanyMapper(CompanyMapper);
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Company> companyMapper = new ArrayList<>();
+
+        System.out.println("Please enter the total no. of companies ");
+        int companyNo = sc.nextInt();
+
+        while (companyNo > 0) {
+            System.out.println("Please Enter name of company");
+            sc.nextLine();
+            String name = sc.nextLine();
             
-
-
-
+            System.out.println("Enter wage for that company");
+            int wage = sc.nextInt();
+            System.out.println("Enter total working day");
+            int totalWorkingDay = sc.nextInt();
+            System.out.println("Enter total working Hour");
+            int totalWorkingHour = sc.nextInt();
+            Company cmp = new Company(name, wage, totalWorkingDay, totalWorkingHour);
+            companyMapper.add(cmp);
+            companyNo--;
         }
+
+        Logger(companyMapper);
+
+    }
+
+    /*
+     * @desc: log out all the company object stored in arraylist
+     * @params: arraylist which store company object
+     * 
+     */
+    public static void Logger(ArrayList<Company> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            System.out.println(arr.get(i));
+        }
+
+    }
     }

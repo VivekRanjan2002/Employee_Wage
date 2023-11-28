@@ -1,6 +1,7 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+
 public class Company {
-    String name;
+    public String name;
     private int wage;
     private int  totalWorkingDay;
     private int totalWorkingHour;
@@ -66,15 +67,16 @@ public class Company {
        
         
     }
-     public void CompanyMapper(HashMap<String,Company> map){
-         map.put(this.name, this);
-           System.out.println( map.get(this.name));   
-              
-        }
+    
 
    
     @Override
-    public String toString(){
-        return "The Total Wage of "+ this.name+ " is : "+ this.totalWage;
+    public String toString() {
+       String temp= String.format("""
+               Name: %s
+               TotalWage: %d 
+               """,this.name, this.totalWage);
+       return temp;
+       
     }
 }
