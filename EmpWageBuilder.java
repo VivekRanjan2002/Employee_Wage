@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class EmpWageBuilder {
@@ -8,17 +8,41 @@ public class EmpWageBuilder {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Company> companyMapper = new ArrayList<>();
+        HashMap<String, Company> companyMapper = new HashMap<>();
+        boolean running = true;
+        while (running) {
+            System.out.println("Press 1 to add new entry");
+            System.out.println("Press 2 to print company details");
+            System.out.println("Press 3 to exit");
+            System.out.println("Press your option");
+            int option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("Please enter the total no. of companies ");
+                    int companyNo = sc.nextInt();
+                    getCompaniesInfo(companyNo, companyMapper);
 
-        System.out.println("Please enter the total no. of companies ");
-        int companyNo = sc.nextInt();
-        getCompaniesInfo(companyNo, companyMapper);
+                    break;
+                case 2:
+                    System.out.println("Please Type the name of company");
+                    String name = sc.nextLine();
+                   sc.nextLine();
+                    companyLogger(name, companyMapper);
+                     
+                    break;
+                case 3:
+                    running = false;
+                    break;
 
-        // print each company stored
-        for (int i = 0; i < companyNo; i++) {
-            companyMapper.get(i).Logger();
+                default:
+                    System.out.println("Invalid Option");
+                    sc.nextLine();
+                    break;
+            }
+
         }
 
+       
     }
 
     /*
@@ -30,7 +54,7 @@ public class EmpWageBuilder {
      * 
      */
 
-    public static void getCompaniesInfo(int companyNo, ArrayList<Company> companyMapper) {
+    public static void getCompaniesInfo(int companyNo, HashMap<String, Company> companyMapper) {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < companyNo; i++) {
 
@@ -46,11 +70,20 @@ public class EmpWageBuilder {
             int totalWorkingHour = sc.nextInt();
             sc.nextLine();
             Company cmp = new Company(name, wage, totalWorkingDay, totalWorkingHour);
-            companyMapper.add(cmp);
+            companyMapper.put(name, cmp);
 
         }
-        sc.close();
+      
 
+    }
+    
+    public static void companyLogger(String name, HashMap<String, Company> companyMapper) {
+        if (companyMapper.containsKey(name)) {
+            System.out.println(companyMapper.get(name).toString());
+        }
+        else {
+            System.out.println("oops! No such company name exist");
+        }
     }
 
 }
