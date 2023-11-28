@@ -8,29 +8,27 @@ public class EmpWageBuilder  {
         System.out.println("Welcome to Employee Wage Computation Program");
 
         Scanner sc = new Scanner(System.in);
-        Company[] companyMapper;
+        ArrayList<Company> companyMapper = new ArrayList<>();
 
         System.out.println("Please enter the total no. of companies ");
         int companyNo = sc.nextInt();
-
-        companyMapper = new Company[companyNo];
         getCompaniesInfo(companyNo, companyMapper);
 
         // print each company stored 
         for (int i = 0; i < companyNo; i++) {
-            companyMapper[i].Logger();
+            companyMapper.get(i).Logger();
          }
 
     }
 
     /*
      * @desc: takes all the input of a particular company like name,wage,totalworkinghour,totalworkingday
-     *         and store company object in arr
-     * @params: size of arr, arr
+     *         and store company object in array list
+     * @params: no. of company and arraylist 
      * 
      */
    
-    public static void getCompaniesInfo(int companyNo, Company[] companyMapper) {
+    public static void getCompaniesInfo(int companyNo, ArrayList<Company>companyMapper) {
          Scanner sc = new Scanner(System.in);
          for (int i = 0; i < companyNo; i++) {
 
@@ -46,7 +44,7 @@ public class EmpWageBuilder  {
              int totalWorkingHour = sc.nextInt();
              sc.nextLine();
              Company cmp = new Company(name, wage, totalWorkingDay, totalWorkingHour);
-             companyMapper[i] = cmp;
+             companyMapper.add(cmp);
 
          }
          sc.close();
