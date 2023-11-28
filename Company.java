@@ -1,6 +1,7 @@
-import java.util.ArrayList;
 
-public class Company {
+import java.util.Scanner;
+
+public class Company implements CompanyInterface{
     public String name;
     private int wage;
     private int  totalWorkingDay;
@@ -33,9 +34,14 @@ public class Company {
    
 
     
-    // totalWageComputation
-
-    private  void totalWageComputation(int totalWorkingDay, int totalWorkingHour) {
+    /*
+     * @desc: compute total wage of employee in month such that total days work doesn't exceed totalworkingday
+     * and total hours worked shouldn't exceed totalworkinghour
+     * @params: totalworkingDay and totalworkingHour
+     * @return : totalwage(int)
+     */
+   @Override
+    public  void totalWageComputation(int totalWorkingDay, int totalWorkingHour) {
         int currentDay = 0;
         int totalWage = 0;
         int currentHour = 0;
@@ -70,6 +76,18 @@ public class Company {
     
 
    
+    /*
+     * @desc: log out all the company object stored in arraylist
+     * 
+     * @params: arraylist which store company object
+     * 
+     */
+    @Override
+    public void Logger() {
+        System.out.println("Name: "+this.name+ "    TotalWage: "+this.totalWage);
+
+    }
+
     @Override
     public String toString() {
        String temp= String.format("""
